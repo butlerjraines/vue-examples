@@ -1,0 +1,64 @@
+<xhtml>
+
+  <head>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+
+
+    <style>
+      .demo {
+        font-family: sans-serif;
+        border: 1px solid #eee;
+        border-radius: 2px;
+        padding: 20px 30px;
+        margin-top: 1em;
+        margin-bottom: 40px;
+        user-select: none;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="components-demo">
+      <button-counter></button-counter>
+    </div>
+
+
+    <script>
+
+      // Create a Vue application
+      const app = Vue.createApp({})
+
+      // Define a new global component called button-counter
+      app.component('button-counter', {
+        data() {
+
+          return {
+            msg: 'Click',
+            count: 0
+          }
+        },
+        methods: {
+          plus: function () {
+          //To access the variables from data(), we must use this.
+            this.count++;
+
+            console.log(this.count)
+          }
+        },
+        template: `
+    <button v-on:click="plus">
+      You clicked me {{ count }} times.
+    </button>
+    <p><strong>Sum:</strong> {{ msg }}</p>`
+      })
+      // Mount the app to the DOM
+      app.mount('#components-demo')
+
+    </script>
+
+    <body>
+</xhtml>
