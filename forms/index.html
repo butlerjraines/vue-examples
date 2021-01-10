@@ -1,0 +1,87 @@
+<xhtml>
+
+  <head>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+
+
+    <style>
+      .demo {
+        font-family: sans-serif;
+        border: 1px solid #eee;
+        border-radius: 2px;
+        padding: 20px 30px;
+        margin-top: 1em;
+        margin-bottom: 40px;
+        user-select: none;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="components-demo">
+      <button-counter post-title="Butler RAines"></button-counter>
+    </div>
+
+
+    <script>
+
+      // Create a Vue application
+      const app = Vue.createApp({})
+
+      // Define a new global component called button-counter
+      app.component('button-counter', {
+
+        data() {
+    return {
+      owner: '',
+      msg: '',
+      preview: "A Preview will show here.",
+      name: ''
+    }
+  },
+  methods: {
+  	postMessage() {
+      //write your code
+      this.preview = this.$refs.form.name.value;
+      console.log(this.$refs.form.name.value);
+     
+
+    },
+
+    getFormValues () {
+   
+   
+      console.log(2);
+    },
+//this will clear the form
+    submitForm : function(event){
+            event.preventDefault(),
+            //process...             
+            event.target.reset()
+        }
+  },
+	template: `
+  <div>
+    <form ref="form" @submit.prevent v-on:submit="submitForm">
+		<input type="text" id="txtOwner" v-model="owner">
+		<input type="text" id="txtMsg" v-model="msg" name="name">
+    <button @click="postMessage">Post</button>
+    </form>
+   <h3>Preview</h3> {{preview}}
+   <h3>Owner</h3> {{owner}}
+   <h3>Message</h3> {{msg}}
+  </div>  
+    `
+});
+   
+      // Mount the app to the DOM
+      app.mount('#components-demo')
+
+    </script>
+
+    <body>
+</xhtml>
